@@ -1,0 +1,30 @@
+{
+  "name": "cliutils",
+  "version": "1.0.0",
+  "description": "utilities (extra useful features) for windows command line",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FabianPaci/cliutils.git"
+  },
+  "keywords": [
+    "cli",
+    "windows",
+    "command-line",
+    "commandline",
+    "utilities",
+    "cmd"
+  ],
+  "author": "Fabian Paci",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FabianPaci/cliutils/issues"
+  },
+  "homepage": "https://github.com/FabianPaci/cliutils#readme",
+  "dependencies": {
+    "vorpal": "^1.12.0"
+  }
+}
