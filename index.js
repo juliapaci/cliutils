@@ -1,4 +1,5 @@
 module.exports = function () {
+  const cli = require("cliutils");
   const vorpal = require("vorpal")();
   vorpal.delimiter().show();
 
@@ -44,17 +45,17 @@ module.exports = function () {
 const vorpal = require("vorpal")();
 vorpal.delimiter().show();
 
-vorpal
-  .command("goto", "goes to a url with your default browser")
-  .action(function (args, callback) {
-    this.log("goto");
-    callback();
-  });
+// vorpal
+//   .command("goto", "goes to a url with your default browser")
+//   .action(function (args, callback) {
+//     this.log("goto");
+//     callback();
+//   });
 
 vorpal
 
   .mode("repl")
-  .description("d o maths -original")
+  .description("do maths -original")
   .delimiter("repl:")
   .action(function (command, callback) {
     this.log(eval(command));
@@ -79,4 +80,24 @@ vorpal
     });
   });
 
-// vorpal.mode().description("goes to home page");
+vorpal
+
+  .mode("bash")
+  .description("directly enter arbitrary bash commands. -original")
+  .delimiter("bash:")
+  .init(function (args, callback) {
+    this.log(
+      "Welcome to bash mode.\nYou can now directly enter arbitrary bash commands. To exit, type `exit`."
+    );
+    callback();
+  })
+  .action(function (command, callback) {
+    const k = cp.spawn("bash");
+    k.stdout.pipe(process.stdout);
+    k.stderr.pipe(process.stderr);
+
+    k.stdin.write(command);
+    k.stdin.end("\n");
+
+    k.once("exit");
+  });
